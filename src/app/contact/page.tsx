@@ -79,7 +79,7 @@ function Contact() {
         </div>
     </div>
 
-    {/* Contact Form Section */}
+    {/* Contact Section */}
     <div className="mt-16 bg-white rounded-lg p-8 md:w-1/2">
         <form className="space-y-4">
      <div>

@@ -32,7 +32,7 @@ const Footer = () => {
      <Link href="/privacy-policy" className="hover:text-black">Privacy Policy</Link>
  </div>
 
-    {/* Newsletter Section */}
+   
     
    <div className="flex flex-col space-y-4 text-gray-600">
    <h4 className="text-xl font-semibold text-gray-700">Newsletter</h4>

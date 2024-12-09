@@ -8,9 +8,9 @@ import OurBlog from "./components/OurBlog";
 import Instagram from "./components/Instagram";
 import Footer from "./components/Footer";
 
-import Shop from "./components/Shops";
-import Blog from "./components/Blogs";
-import Contact from "./components/Contact";
+
+
+
 
 
 
@@ -32,25 +32,6 @@ export default function Home() {
     <Instagram/>
     <Footer/>
 
-
-
-<br/>
-<br/>
-<br/>
-
-
-<Shop/>
-<Blog/>
-<Contact/>
-
-
-
-
-
-
-
-    
-    
 
     </>
   );

@@ -7,7 +7,7 @@ function ShopLine () {
   return (
     <div className="bg-[#F4F4F4] py-4 px-6 flex justify-between items-center flex-wrap">
 
-      {/* Left Section */}
+    
 
       <div className="flex items-center gap-4 flex-wrap mb-4 sm:mb-0">
     <div className="flex items-center gap-1 cursor-pointer">
@@ -25,7 +25,7 @@ function ShopLine () {
   <p>Showing 1-6 of 32 results</p>
   </div>
 
- {/* Right Section */}
+
 
    <div className="flex items-center gap-4">
    <div className="flex items-center gap-2">

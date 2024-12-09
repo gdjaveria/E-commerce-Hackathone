@@ -19,7 +19,8 @@ const OurBlog = () => {
       className="rounded-lg" />
 
  <p className='text-xl font-normal my-3'>Going all-in with millennial design</p>
-      <p className="text-xl text-center mx-auto my-3 underline underline-offset-8 text-black-600 font-medium">Read More</p>
+      <p className="text-xl text-center mx-auto my-3 underline underline-offset-8 text-black-600 font-medium">
+        Read More</p>
      <span className='text-center mx-28 flex font-light'>
     <span className='flex mx-auto text-center'>
       <IoTimeOutline size={20} />
@@ -45,7 +46,8 @@ const OurBlog = () => {
    </span>
   <span className='flex mx-auto text-center'>
     < FiCalendar size={20} />
-   <p className='ml-3'>12<sup>th</sup> Oct 2022</p> 
+   <p className='ml-3'>12<sup>th</sup>
+    Oct 2022</p> 
    </span>
     </span>
   </div>
@@ -57,7 +59,7 @@ const OurBlog = () => {
        alt="A stylish rocket single seater"
     className="rounded-lg"
    />
-   <p className='text-xl font-normal my-3'>Going all-in with millennial design</p>
+   <p className='text-xl font-normal my-4'>Going all-in with millennial design</p>
   <p className="text-xl text-center mx-auto my-3 underline underline-offset-8 text-black-600 font-medium">Read More</p>
  <span className='text-center mx-28 flex font-light'>
    <span className='flex  mx-auto text-center'>

@@ -8,7 +8,8 @@ const Footer = () => {
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-wrap md:text-left text-center order-first">
       <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">400 University Drive Suite 200 Coral Gables,
+ <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+ 400 University Drive Suite 200 Coral Gables,
   FL 33134 USA</h2>
       
  </div>
@@ -34,7 +35,7 @@ const Footer = () => {
   <nav className="list-none mb-10">
      <li>
    <a className="text-slate-800 hover:text-gray-800">Payment Options</a>
-          </li>
+      </li>
    <li className='my-2'>
   <a className="text-slate-800 hover:text-gray-800 py-2">Returns</a>
   </li>

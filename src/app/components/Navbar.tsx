@@ -24,7 +24,9 @@ function Navbar() {
    className="md:hidden text-2xl"
  aria-label="Toggle Mobile Menu" >
 
-  {isMenuOpen ? <HiOutlineX /> : <HiOutlineMenu />}</button>
+  {isMenuOpen ? <HiOutlineX /> :
+  <HiOutlineMenu />}
+  </button>
 
                 
   <nav className="hidden md:block">
@@ -95,21 +97,6 @@ function Navbar() {
    </ul>
   </nav>
   </header>
-  
-
-
-
-
-         
-
-
-
-    
-
-        
-
-            
-
 
   )
 }

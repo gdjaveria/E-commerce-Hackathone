@@ -12,8 +12,8 @@ const MoreSection = () => {
    <Image
    src='/tabel00.png'
     alt=''
-  height={400}
-    width={400} />
+  height={500}
+    width={500} />
   <h3 className='text-3xl font-medium'>Side table</h3>
     <Link href='/'>
        <p className="text-xl mt-8 underline underline-offset-8 text-black-600 ">View More</p>

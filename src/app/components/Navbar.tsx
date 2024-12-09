@@ -61,7 +61,7 @@ function Navbar() {
   </div>
  </div>
 
-  {/* Mobile Menu (Visible when isMenuOpen is true) */}
+
 
   <nav
    className={`md:hidden fixed top-0 left-0 w-full h-full bg-white z-20 transition-transform duration-300 ${isMenuOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`} >

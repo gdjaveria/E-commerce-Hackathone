@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto px-4">
 
         {/* Footer Top Section */}
-        <div className="flex justify-between">
+        <div className="flex flex-col justify-between">
           
  <div className="flex flex-col text-gray-600">
   <p className="text-lg font-semibold">400 University Drive Suite 200</p>
@@ -28,6 +28,7 @@ const Footer = () => {
      <h4 className="text-xl font-semibold text-gray-700">Help</h4>
      <Link href="/payment-options" className="hover:text-black">Payment Options</Link>
      <Link href="/returns" className="hover:text-black">Returns</Link>
+    
      <Link href="/privacy-policy" className="hover:text-black">Privacy Policy</Link>
  </div>
 
@@ -50,7 +51,6 @@ const Footer = () => {
   </div>
  </div>
 
- {/* Footer Bottom Section */}
 
   <div className="border-t border-gray-300 mt-10 pt-4 text-gray-600">
   <p className="text-sm">2022 Meubel House. All rights reserved</p>

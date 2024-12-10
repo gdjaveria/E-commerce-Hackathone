@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
 import { FaCalendar, FaUser } from 'react-icons/fa6';
 import { GiWoodenChair } from 'react-icons/gi';
-import Page from '@/app/components/Pages';
+
 
 
 function Blog() {
@@ -97,7 +97,7 @@ function Blog() {
   
   <div className="mt-10 w-full lg:w-1/4 p-6 gap-6">
 
-    {/* Categories */}
+   
     <div className="p-6 rounded-lg">
       <h3 className="text-xl font-bold mb-4">Categories</h3>
       <ul className="space-y-8 text-gray-500">
@@ -159,10 +159,28 @@ function Blog() {
 
     <div className='justify-center mx-auto text-center'>
 
-  <Page />
- 
-  </div>
+    <div className='justify-center text-center mx-auto'>
+
+<div className="flex gap-4 mx-auto my-12">
+
+  
+   <div className="bg-[#c9ba8b] px-4 py-2 font-semibold rounded-none">1</div>
+   
+     <div className="bg-[#c9ba8b] px-4 py-2 font-semibold rounded-none">2</div>
+
+         
+  <div className="bg-[#c9ba8b] px-4 py-2 font-semibold rounded-none">3</div>
+
+
+  <div className="bg-[#c9ba8b] px-4 py-2  font-semibold text-center rounded-lg 
+  cursor-pointer hover:bg-[#c4bca3]">
+     Next
+   </div>
+   </div>
+</div>
+
  </div>
+  </div>
     );
 }
 

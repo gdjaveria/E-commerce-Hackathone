@@ -16,7 +16,8 @@ const MoreSection = () => {
     width={500} />
   <h3 className='text-3xl font-medium'>Side table</h3>
     <Link href='/'>
-       <p className="text-xl mt-8 underline underline-offset-8 text-black-600 ">View More</p>
+       <p className="text-xl mt-8 underline underline-offset-8 text-black-600 ">
+        View More</p>
   </Link>
    </div>
 

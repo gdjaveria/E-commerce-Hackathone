@@ -1,104 +1,67 @@
-'use client'
+
 import Link from 'next/link';
-import React, { useState } from 'react';
 import { FaRegUser } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdHeartEmpty } from 'react-icons/io';
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'; 
-import { FaCartShopping } from "react-icons/fa6";
+import { IoCartOutline } from "react-icons/io5";
+import { TfiMenuAlt } from "react-icons/tfi";
 
 
-function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+import React from 'react'
 
-    return (
-        <header>
-      <div className=" bg-[#FBEBB5] flex justify-between items-center mx-auto max-w-screen-2xl p-4">
-  <button
-   onClick={toggleMenu}
-   className="md:hidden text-2xl"
- aria-label="Toggle Mobile Menu" >
+const Navbar = () => {
+  return (
+  <nav>
+    <div className='flex justify-center max-w-full bg-[#FBEBB5] mx-auto'>
 
-  {isMenuOpen ? <HiOutlineX /> :
-  <HiOutlineMenu />}
-  </button>
-
-                
-  <nav className="hidden md:block">
-        <ul className="flex space-x-16 md:ml-[400px] font-medium">
-        <li>
-        <Link href="/" aria-label="Navigate to Home" className="hover:underline">Home</Link>
-         </li>
-     <li>
-       <Link href="/shop" aria-label="Navigate to Shop" className="hover:underline">Shop</Link>
-    </li>
-   
-   <li>
-  <Link href="/blog" aria-label="Navigate to Blog" className="hover:underline">Blog</Link>
-  </li>
-  <li>
-     <Link href="/contact" aria-label="Navigate to Contact" className="hover:underline">Contact</Link>
-  </li>
-   </ul>
-  </nav>
-
-   {/* Icons Sections */}
+      <ul className='hidden md:block'>
+        <li className='flex justify-between items-center gap-9 mt-16 px-10 pl-7 text-md text-black font-bold '>
+          <Link href="/">Home</Link>
+          <Link href="/shop">Shop</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/contact">Contact</Link>
 
 
-  <div className="flex gap-3 md:space-x-12 md:mr-32 items-center">
-  <Link href='/myaccount'>
-  <FaRegUser aria-label="User Profile" size={20} />
-  </Link>
-  <FiSearch aria-label="Search" size={22} />
-  <IoMdHeartEmpty aria-label="Favorites" size={25} />
- <div className="flex items-center z-10">
- <FaCartShopping />
+          <FaRegUser size={20}/>
+<FiSearch size={22}/>
+<IoMdHeartEmpty size={25}/>
+<IoCartOutline size={25} />
 
-  </div>
-  </div>
- </div>
+        </li>
+         </ul>
+
+      <Sheet>
+  <SheetTrigger className='md:hidden'>
+  <TfiMenuAlt  flex-col size={40}/>
+</SheetTrigger>
+  <SheetContent>
+  <ul className=''>
+        <li className='flex flex-col justify-between items-center gap-9 mt-16 px-8 text-md text-black font-bold '>
+          <Link href="/">Home</Link>
+          <Link href="/shop">Shop</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/contact">Contact</Link>
+          </li>
+          </ul>
+
+  </SheetContent>
+</Sheet>
 
 
-
-  <nav
-   className={`md:hidden fixed top-0 left-0 w-full h-full bg-white z-20 transition-transform duration-300 ${isMenuOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`} >
-   <div className="flex justify-between items-center p-4 border-b">
-     <h1 className="text-lg font-bold">Your Logo</h1>
-
-    <button
-    onClick={toggleMenu}
-  className="text-2xl"
-    aria-label="Close Mobile Menu"
- >
- <HiOutlineX />
- </button>
- </div>
-  <ul className="flex flex-col items-center space-y-6 py-8">
-    <li>
-    <Link href="/" aria-label="Navigate to Home" className="hover:underline">Home</Link>
-   </li>
- <li>
-    <Link href="/shop" aria-label="Navigate to Shop" className="hover:underline">Shop</Link>
-   </li>
-   {/* <li>
-  <Link href="/about" aria-label="Navigate to About" className="hover:underline">About</Link>
- </li> */}
- <li>
-    <Link href="/blog" aria-label="Navigate to Blog" className="hover:underline">Blog</Link>
-  </li>
-  <li>
-  <Link href="/contact" aria-label="Navigate to Contact" className="hover:underline">Contact</Link>
-  </li>
-   </ul>
-  </nav>
-  </header>
-
+      
+    </div>
+    </nav>
   )
 }
 
-export default Navbar
+export default Navbar;

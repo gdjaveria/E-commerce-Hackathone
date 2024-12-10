@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
-import { FaCalendar, FaUserLarge } from 'react-icons/fa6';
+import { FaCalendar, FaUser } from 'react-icons/fa6';
 import { GiWoodenChair } from 'react-icons/gi';
 import Page from '@/app/components/Pages';
 
@@ -28,7 +28,7 @@ function Blog() {
   <Link href="/" className="font-bold hover:underline">
         Home
       </Link>
-  <span className="font-bold mx-2">{'>'}</span>
+  <span className="font-bold mx-2"></span>
   <Link href="/blog" className="hover:underline">
        Blog
      </Link>
@@ -44,12 +44,22 @@ function Blog() {
  
 
     {[
-      { image: "/Rectangle2.png", title: "Going all-in with millennial design", category: "Crafts", date: "01 Jan 2023" },
-      { image: "/b2pic.jpeg", title: "Exploring new ways of decorating", category: "Design", date: "15 Mar 2023" },
-      { image: "/b3pic.jpeg", title: "Handmade pieces that took time to make", category: "Wood", date: "20 Sep 2023" },
-    ].map((post, index) => (
+      { image: "/Rectangle2.png",
+       title: "Going all-in with millennial design",
+        category: "Crafts",
+        date: "01 Jan 2023" },
+      { image: "/b2pic.jpeg", 
+        title: "Exploring new ways of decorating", 
+        category: "Design",
+         date: "15 Mar 2023" },
+      { image: "/b3pic.jpeg",
+         title: "Handmade pieces that took time to make", 
+        category: "Wood", 
+        date: "20 Sep 2023" },]
+        .map((post, index) => (
       <div key={index} className="bg-white p-4 rounded-lg transition-shadow">
-        <Image
+        
+      <Image
   src={post.image}
    height={300}
     width={500}
@@ -58,7 +68,7 @@ function Blog() {
 
         <div className="flex items-center space-x-4 mt-3 text-sm text-gray-600">
           <div className="flex items-center space-x-1">
-     <FaUserLarge />
+     <FaUser />
       <p>Admin</p>
   </div>
     <div className="flex items-center space-x-1">
@@ -76,7 +86,8 @@ function Blog() {
   </p>
    <Link
    href={`/blog/post-id-${index + 1}`} 
-   className="mt-4 block text-primary underline underline-offset-4"> Read More
+   className="mt-4 block text-primary underline underline-offset-4"> 
+   Read More
    </Link>
  </div>
 
@@ -91,11 +102,16 @@ function Blog() {
       <h3 className="text-xl font-bold mb-4">Categories</h3>
       <ul className="space-y-8 text-gray-500">
         {[
-          { name: 'Crafts', count: 2 },
-          { name: 'Design', count: 8 },
-          { name: 'Handmade', count: 7 },
-          { name: 'Interior', count: 1 },
-          { name: 'Wood', count: 6 },
+          { name: 'Crafts',
+     count: 2 },
+     { name: 'Design', 
+       count: 8 },
+   { name: 'Handmade',
+             count: 7 },
+          { name: 'Interior', 
+            count: 1 },
+          { name: 'Wood',
+             count: 6 },
         ].map((category, index) => (
           <li key={index} className="flex justify-between text-sm">
             <span>{category.name}</span>

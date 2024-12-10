@@ -10,9 +10,6 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 

@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 
 
-
+import Account from "./accounts/page";
 
 
 
@@ -32,7 +32,11 @@ export default function Home() {
     <Instagram/>
     <Footer/>
 
+<br/>
+<br/>
+<br/>
 
+<Account/>
     </>
   );
 }

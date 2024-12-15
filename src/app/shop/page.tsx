@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/app/components/Navbar'
 import ShopLine from '@/app/components/Shop'
+import Center from '../components/Center'
+import Footer from '../components/Footer'
 
 
 
@@ -109,6 +111,9 @@ function Shop() {
 </div>
 
  </div>
+ <Center/>
+ <Footer/>
+
   </div>
 
   </div>

@@ -4,7 +4,8 @@ import Link from 'next/link';
 import Navbar from '@/app/components/Navbar';
 import { FaCalendar, FaUser } from 'react-icons/fa6';
 import { GiWoodenChair } from 'react-icons/gi';
-
+import Center from '../components/Center';
+import Footer from '../components/Footer';
 
 
 function Blog() {
@@ -12,7 +13,7 @@ function Blog() {
   <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
             
   <div className="bg-[#faf4f4]">
-    <Navbar />
+    <Navbar/>
  </div>
 
             
@@ -178,7 +179,8 @@ function Blog() {
    </div>
    </div>
 </div>
-
+<Center/>
+<Footer/>
  </div>
   </div>
     );

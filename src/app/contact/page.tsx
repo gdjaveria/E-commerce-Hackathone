@@ -6,11 +6,13 @@ import Link from 'next/link'
 import { HiLocationMarker } from "react-icons/hi";
 import { GoClockFill } from "react-icons/go";
 import { MdPhoneInTalk } from "react-icons/md";
+import Center from '../components/Center';
+import Footer from '../components/Footer';
 
 
 function Contact() {
     return (
-        <div className="max-w-screen-xl container mx-auto pb-8 px-4">
+   <div className="max-w-screen-xl container mx-auto pb-8 px-4">
  <div className='bg-[#faf4f4]'>
     <Navbar />
    </div>
@@ -44,11 +46,11 @@ function Contact() {
 <div className="flex flex-col md:flex-row justify-between mt-12 gap-12 md:gap-16">
   
     <div className="flex flex-col gap-8">
-        <div className="flex items-center space-x-4 my-6">
+        <div className="flex items-center space-x-4 mx-7">
             <div>
   <span className='flex'>
-      <HiLocationMarker size={25} className="text-4xl text-primary" />
-     <h3 className="font-semibold text-xl mx-7">Address</h3>
+      <HiLocationMarker size={25} className="text-4xl text-primary"/>
+     <h3 className="font-semibold text-xl ml-4">Address</h3>
  </span>
   <p className='ml-10'>
    238 5<sup>th</sup> SE Avenue,
@@ -74,9 +76,9 @@ function Contact() {
        <h3 className="ml-4 font-semibold text-lg">Working Time</h3>
   </span>
     <p className='ml-10'>Monday-Friday: 9:00 - 
-      <br />22:00</p>
+      <br/>22:00</p>
     <p className='ml-10'>Saturday-Sunday: 9:00 - 
-     <br />21:00</p>
+     <br/>21:00</p>
             </div>
         </div>
     </div>
@@ -105,7 +107,8 @@ function Contact() {
     Submit</button>
     </div>
 </div>
-
+<Center/>
+<Footer/>
  </div>
     )
 }

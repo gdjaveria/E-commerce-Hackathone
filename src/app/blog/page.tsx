@@ -26,7 +26,7 @@ function Blog() {
    <div className="absolute inset-0 flex flex-col items-center justify-center">
   <h1 className="text-xl md:text-5xl font-semibold">Blog</h1>
   <div className="mt-4 text-gray-500 text-xs md:text-xl flex items-center">
-  <Link href="/" className="font-bold hover:underline">
+  <Link href="/" className="font-bold hover:underline text-black">
         Home
       </Link>
   <span className="font-bold mx-2"></span>

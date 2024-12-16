@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 
 
-import Account from "./accounts/page";
+import CheckOut from "./checkout/page";
 
 
 
@@ -36,7 +36,11 @@ export default function Home() {
 <br/>
 <br/>
 
-<Account/>
+<CheckOut/>
+
+
+
+
     </>
   );
 }

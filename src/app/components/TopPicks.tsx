@@ -16,7 +16,7 @@ const TopPicks = () => {
 
 
 
-     <div className="flex flex-wrap justify-center md:justify-start  gap-6 ">
+     <div className="flex flex-wrap justify-center md:justify-start gap-6 ">
    
     
       {[
@@ -45,26 +45,12 @@ const TopPicks = () => {
    </div>
    ))}
   </div>
+
+  <div className='items-center flex justify-center mt-10'>
+<button className='text-black text-2xl font-medium underline'>View More</button>
+</div>
 </div>
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-
     
     
   )

@@ -10,7 +10,7 @@ const MoreSection = () => {
  <div className='flex flex-col md:flex-row bg-[#F4F4F4] justify-around mx-auto p-10'>
  <div>
    <Image
-   src='/tabel00.png'
+   src='/table00.png'
     alt=''
   height={500}
     width={500} />

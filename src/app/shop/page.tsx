@@ -23,15 +23,15 @@ const item =
            name: 'Trenton modular sofa_3', price: 'Rs. 25,000.00', href: '/shop/5' },
         { id: 6, src: '/Kenttable.png', 
           name: 'Granite dining table with dining chair', price: 'Rs. 25,000.00', href: '/shop/6' },
-        { id: 7, src: '/Roundtabel.png',
-           name: 'Outdoor bar table and stool', price: 'Rs. 25,000.00', href: '/shop/7' },
+        { id: 7, src:'/Roundtable.png',
+           name: 'Rounded coffee table_color', price: 'Rs. 25,000.00', href: '/shop/7' },
         { id: 8, src: '/Reclaimed.png', 
-          name: 'Plain console with teak', price: 'Rs. 25,000.00', href: '/shop/8' },
+          name: 'Reclaimend teak coffee table', price: 'Rs. 25,000.00', href: '/shop/8' },
         { id: 9, src: '/Plaintabel.png',
-           name: 'Trenton modular sofa_3', price: 'Rs. 25,000.00', href: '/shop/9' },
-        { id: 10, src: '/Reclaimedslide.png', 
+           name: 'plain_console', price: 'Rs. 25,000.00', href: '/shop/9' },
+        { id: 10, src: '/ReclaimedSide.png', 
           name: 'Granite dining table with dining chair', price: 'Rs. 25,000.00', href: '/shop/10' },
-        { id: 11, src: '/SJP.png', 
+        { id: 11, src: '/Mask2.png', 
           name: 'Outdoor bar table and stool', price: 'Rs. 25,000.00', href: '/shop/11' },
         { id: 12, src: '/Bella.png',
            name: 'Plain console with teak', price: 'Rs. 25,000.00', href: '/shop/12' },
@@ -67,14 +67,15 @@ function Shop() {
   </h1>
 
   <div className="absolute top-28 left-1/2 mt-10 transform -translate-x-1/3 -translate-y-1/3">
-  <p className="text-gray-700 text-xs md:text-xl flex items-center">
+  <p className="text-gray-700 text-xs md:text-xl flex items-center mt-5">
     <Link href="/" className="font-bold hover:underline">Home</Link>
      <span className="font-bold mx-2"></span>
      <Link href="/shop" className=" hover:underline">Shop</Link></p>
   </div>
  </div>
 
- <div className='my-6'><ShopLine />
+ <div className='my-6'>
+   <ShopLine />
   </div>
 <div>
  

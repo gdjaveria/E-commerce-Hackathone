@@ -29,7 +29,7 @@ const CheckOut = () => {
  <div className="absolute top-28 left-1/2 transform -translate-x-1/3 -translate-y-1/3 mt-10">
       <p className="text-gray-700 text-xs md:text-xl flex items-center gap-2 mt-5">
         <Link href="/" className="font-bold hover:underline text-black">Home</Link>
-   <Link href="/checkout" className=" hover:underline">checkout</Link>
+   <Link href="/shop" className=" hover:underline">checkout</Link>
      </p>
   </div>
   </div>

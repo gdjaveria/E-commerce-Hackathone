@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { FaRegUser } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdHeartEmpty } from 'react-icons/io';
-import { IoCartOutline } from "react-icons/io5";
 import { TfiMenuAlt } from "react-icons/tfi";
+import ShoppingCart from './Card';
 
 
 import {
@@ -28,14 +28,22 @@ const Navbar = () => {
           <Link href="/blog">Blog</Link>
           <Link href="/contact">Contact</Link>
 
+ <div className="flex gap-3 md:space-x-12 md:mr-32 items-center">
+  <Link href='/myaccount'>
+   <FaRegUser aria-label="User Profile" 
+   size={20} />
+   </Link>
+     <FiSearch aria-label="Search" 
+     size={22} />
+     <IoMdHeartEmpty aria-label="Favorites" 
+     size={25} />
+   <div className="flex items-center z-10">
+    <ShoppingCart />
+      </div>
+  </div>
 
-          <FaRegUser size={20}/>
-<FiSearch size={22}/>
-<IoMdHeartEmpty size={25}/>
-<IoCartOutline size={25} />
-
-        </li>
-         </ul>
+</li>
+   </ul>
 
       <Sheet>
   <SheetTrigger className='md:hidden'>

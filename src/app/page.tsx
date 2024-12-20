@@ -10,15 +10,6 @@ import Footer from "./components/Footer";
 
 
 
-
-import CheckOut from "./checkout/page";
-
-
-
-
-
-
-
 export default function Home() {
   return (
     <>
@@ -31,15 +22,6 @@ export default function Home() {
     <OurBlog/>
     <Instagram/>
     <Footer/>
-
-<br/>
-<br/>
-<br/>
-
-<CheckOut/>
-
-
-
 
     </>
   );

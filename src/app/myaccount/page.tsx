@@ -21,7 +21,7 @@ function Account() {
 <h1 className="text-xl md:text-5xl font-semibold mt-8">My Account</h1>
 <p className="text-gray-700 text-xs md:text-xl flex items-center gap-2">
 <Link href="/" className="font-bold hover:underline">Home</Link>
-<Link href="/" className="hover:underline">
+<Link href="/myaccount" className="hover:underline">
        My Account
      </Link>
      </p>

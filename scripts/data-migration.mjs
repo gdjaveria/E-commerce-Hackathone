@@ -1,8 +1,8 @@
-import { createClient } from '@sanity/client';
-import axios from 'axios';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import axios from 'axios';
+import { createClient } from '@sanity/client';
 
 // Load environment variables from .env.local
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +21,13 @@ const client = createClient({
 async function uploadImageToSanity(imageUrl) {
   try {
     console.log(`Uploading image: ${imageUrl}`);
-    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+    const response = await axios.get(imageUrl, { responseType: 'arraybuffer' }).catch((error) => {
+      console.error('Error fetching image:', imageUrl, error.message);
+      return null;
+    });
+
+    if (!response) return null; // Handle case where image fetching fails
+
     const buffer = Buffer.from(response.data);
     const asset = await client.assets.upload('image', buffer, {
       filename: imageUrl.split('/').pop(),
@@ -29,38 +35,36 @@ async function uploadImageToSanity(imageUrl) {
     console.log(`Image uploaded successfully: ${asset._id}`);
     return asset._id;
   } catch (error) {
-    console.error('Failed to upload image:', imageUrl, error.message);
+    console.error('Failed to upload image:', imageUrl, error);
     return null;
   }
 }
 
 async function importData() {
   try {
-    console.log('Migrating data, please wait...');
-
-    // Fetch products from the API
+    console.log('Fetching products from API...');
     const response = await axios.get('https://template-0-beta.vercel.app/api/product');
     const products = response.data;
-
-    console.log('Products fetched:', products);
+    console.log(`Fetched ${products.length} products`);
 
     for (const product of products) {
+      console.log(`Processing product: ${product.name}`);
       let imageRef = null;
 
-      if (product.imagePath) {
+      if (product.imagePath) {  
         imageRef = await uploadImageToSanity(product.imagePath);
       }
 
       const sanityProduct = {
         _type: 'product',
-        _id: product.id,
+        id: product.id,
         name: product.name,
-        category: product.category,
+        price: parseFloat(product.price),
         description: product.description,
         discountPercentage: product.discountPercentage,
         isFeaturedProduct: product.isFeaturedProduct,
         stockLevel: product.stockLevel,
-        price: parseFloat(product.price),
+        category: product.category,
         image: imageRef
           ? {
               _type: 'image',
@@ -70,16 +74,16 @@ async function importData() {
               },
             }
           : undefined,
-        imagePath: product.imagePath, // Store original image URL
       };
 
-      await client.create(sanityProduct);
-      console.log(`Product created in Sanity: ${sanityProduct.id}`);
+      console.log('Uploading product to Sanity:', sanityProduct.name);
+      const result = await client.create(sanityProduct);
+      console.log(`Product uploaded successfully: ${result._id}`);
     }
 
-    console.log('Data migrated successfully!');
+    console.log('Data import completed successfully!');
   } catch (error) {
-    console.error('Error in migrating data:', error.message);
+    console.error('Error importing data:', error);
   }
 }
 

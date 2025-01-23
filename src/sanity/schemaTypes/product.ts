@@ -1,13 +1,8 @@
-export default {
+const productSchema = {
   name: 'product',
   title: 'Product',
   type: 'document',
   fields: [
-    {
-      name: 'id',
-      title: 'ID',
-      type: 'string',
-    },
     {
       name: 'name',
       title: 'Name',
@@ -17,11 +12,9 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
-    },
-    {
-      name: 'imagePath',
-      title: 'Image Path',
-      type: 'url',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'price',
@@ -53,5 +46,50 @@ export default {
       title: 'Category',
       type: 'string',
     },
+    // New fields
+    {
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+    },
+    {
+      name: 'dimensions',
+      title: 'Dimensions',
+      type: 'string',
+    },
+    {
+      name: 'weight',
+      title: 'Weight',
+      type: 'string',
+    },
+    {
+      name: 'color',
+      title: 'Color',
+      type: 'string',
+    },
+    {
+      name: 'ratings',
+      title: 'Ratings',
+      type: 'number',
+    },
+    {
+      name: 'reviews',
+      title: 'Reviews',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
+      name: 'material',
+      title: 'Material',
+      type: 'string',
+    },
   ],
 };
+
+export default productSchema;

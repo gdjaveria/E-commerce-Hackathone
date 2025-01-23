@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 
 
-const Asgaard = () => {
+const Asgaardsofa = () => {
   const images = ["/Group94.png", "/Group98.png", "/Group97.png", "/Group96.png"];
 
   return (
@@ -23,10 +23,10 @@ const Asgaard = () => {
       <div className='max-w-screen-2xl mx-auto px-6 lg:px-10 pb-10'>
         <div className='text-gray-400 text-md flex items-center space-x-3 mt-5'>
           <Link href="/" className='font-semibold hover:underline px-2'>Home</Link>
-          <IoIosArrowForward size={18} className='text-gray-800' />
+          <IoIosArrowForward size={18} className='text-gray-800'/>
           <Link href="/shop" className='font-semibold hover:underline px-2'>Shop</Link>
           <IoIosArrowForward size={18} className='text-gray-800' />
-          <span className='text-gray-800 text-md px-6'>Asgaard sofa</span>
+          <span className='text-gray-800 text-md px-6'>Asgaard Sofa</span>
         </div>
 
         <div className='flex flex-col gap-10 mt-10 lg:flex-row'>
@@ -46,7 +46,7 @@ const Asgaard = () => {
             </div>
 
           </div>
-
+          
           <div className='flex-1'>
             <Image src="/Asgaardsofa.png" alt='sofa pic'
               height={500} width={500}
@@ -95,7 +95,7 @@ const Asgaard = () => {
             </div>
 
 
-            <hr className='scroll-my-6' />
+            <hr className='scroll-my-6'/>
             <div className='space-y-4'>
               <div className='flex justify-between'>
                 <h3 className='text-gray-500 '>SKU</h3>
@@ -218,4 +218,4 @@ const Asgaard = () => {
   )
 }
 
-export default Asgaard
+export default Asgaardsofa

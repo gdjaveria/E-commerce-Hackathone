@@ -4,15 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Center from "../components/Center";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ShopLine from "../components/Shop";
-
-
-
+import SearchDown from "../components/Categories";
 
 // Define the ImageAsset interface for the image
 interface ImageAsset {
@@ -58,7 +54,8 @@ const ShopPage = () => {
     getProducts();
   }, []);
 
-  // Filter products based on search term and selected category
+  // Filter products and based on
+  // search term and selected category
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -66,7 +63,6 @@ const ShopPage = () => {
   );
 
   return (
-
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
         <Navbar />
@@ -101,14 +97,19 @@ const ShopPage = () => {
         <ShopLine />
       </div>
 
-      {/* Product Section */}
-      <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="max-w-8xl mx-auto py-10 px-8 sm:px-6 lg:px-8">
+        <SearchDown
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          categories={Array.from(
+            new Set(products.map((product) => product.category))
+          )}
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {filteredProducts.map((product) => (
             <div
               key={product._id}
-              className="relative group text-center p-6  bg-white shadow-md rounded-lg hover:scale-105 transition-shadow duration-300"
+              className="relative group text-center p-6 product-card bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300"
             >
               <Link href={`/product/${product._id}`} passHref>
                 <Image
@@ -116,7 +117,8 @@ const ShopPage = () => {
                   alt={product.name}
                   width={300}
                   height={300}
-                  className="mx-auto h-56 object-cover rounded-sm"/>
+                  className="mx-auto h-56 object-cover rounded-sm"
+                />
                 <h3 className="text-lg font-bold text-gray-800 mt-7">
                   {product.name}
                 </h3>
@@ -131,11 +133,10 @@ const ShopPage = () => {
             </div>
           ))}
         </div>
-
-        {/* Footer */}
-        <Center />
-        <Footer />
       </div>
+      {/* Footer */}
+      <Center />
+      <Footer />
     </div>
   );
 };

@@ -33,10 +33,14 @@ const Navbar = () => {
                 <FaRegUser aria-label="User Profile"
                   size={20} />
               </Link>
+
+              <Link href='/'>
               <FiSearch aria-label="Search"
                 size={22} />
+                 </Link>
+
               <IoMdHeartEmpty aria-label="Favorites"
-                size={25} />
+                size={25}/>
               <div className="flex items-center z-10">
                 <ShoppingCart />
               </div>

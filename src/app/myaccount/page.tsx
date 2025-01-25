@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Image from 'next/image';
 import Link from 'next/link';
 import Center from '../components/Center';
+import Footer from '../components/Footer';
 
 function Account() {
    return (
@@ -80,6 +81,7 @@ function Account() {
 
 
          <Center />
+         <Footer/>
       </div>
 
 

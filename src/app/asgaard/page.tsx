@@ -6,6 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import Footer from '../components/Footer';
+import Center from '../components/Center';
 
 
 
@@ -126,7 +127,7 @@ const Asgaardsofa = () => {
       </div>
 
 
-      {/* DESCRIPTION */}
+     {/* Description */}
       <hr className='mt-10' />
       <>
         <h2 className='font-medium flex justify-center space-x-8 mt-9 sm:text-sm'>
@@ -211,11 +212,11 @@ const Asgaardsofa = () => {
         <button className='text-black text-2xl font-medium underline'>View More</button>
       </div>
 
-
+      <Center />
       <Footer />
 
     </>
   )
 }
 
-export default Asgaardsofa
+export default Asgaardsofa;

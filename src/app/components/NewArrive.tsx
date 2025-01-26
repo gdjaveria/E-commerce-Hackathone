@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { Link } from 'lucide-react'
+import Link from 'next/link'
 
 const NewArrive = () => {
   return (
@@ -18,11 +18,8 @@ const NewArrive = () => {
           <p className='text-xl font-bold text-gray-600'>New Arrivals</p>
           <h2 className='text-4xl font-bold text-gray-800 sm:text-3xl my-8'>Asgaard sofa</h2>
           <Link href="/asgaard">
-            <button className='bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800'>
-              Order Now
-
-            </button>
-          </Link>
+        <button className='py-3  px-8 border-black border-2'>Order Now</button>
+      </Link>
         </div>
       </div>
     </section>

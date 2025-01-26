@@ -6,9 +6,10 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import Center from "../components/Center";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import ShopLine from "../components/Shop";
 import SearchDown from "../components/Categories";
+import Navbar from "../components/Navbar";
+
 
 // Define the ImageAsset interface for the image
 interface ImageAsset {
@@ -40,12 +41,12 @@ async function fetchProducts(): Promise<Product[]> {
   return products;
 }
 
-const ShopPage = () => {
+const Shop = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  // Fetch products on component mount
+  // products fetching on component............ 
   useEffect(() => {
     async function getProducts() {
       const products = await fetchProducts();
@@ -54,8 +55,8 @@ const ShopPage = () => {
     getProducts();
   }, []);
 
-  // Filter products and based on
-  // search term and selected category
+  // Filter products and based on............
+  // search term and selected category...........
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -65,7 +66,7 @@ const ShopPage = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
-        <Navbar />
+        <Navbar/>
       </div>
 
       <div className="relative text-black">
@@ -99,6 +100,8 @@ const ShopPage = () => {
 
       <div className="max-w-8xl mx-auto py-10 px-8 sm:px-6 lg:px-8">
         <SearchDown
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           categories={Array.from(
@@ -141,4 +144,4 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+export default Shop;

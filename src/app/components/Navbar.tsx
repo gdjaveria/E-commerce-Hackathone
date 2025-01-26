@@ -34,10 +34,10 @@ const Navbar = () => {
                   size={20} />
               </Link>
 
-              <Link href='/'>
+            
               <FiSearch aria-label="Search"
                 size={22} />
-                 </Link>
+               
 
               <IoMdHeartEmpty aria-label="Favorites"
                 size={25}/>

@@ -11,7 +11,7 @@ import { IoMdCheckmark } from "react-icons/io";
 import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 
-// Define the Product type
+//  the Product type...............
 interface Product {
   _id: string;
   name: string;
@@ -22,7 +22,7 @@ interface Product {
   colors?: string[];
 }
 
-// Define CartItem type
+//  CartItem type.............
 interface CartItem {
   id: string;
   name: string;
@@ -33,7 +33,7 @@ interface CartItem {
   color?: string;
 }
 
-// Fetch product data  from Sanity to dynamic pages.........
+      // Fetch product data  from Sanity to dynamic pages.........
 async function getProductData(productId: string): Promise<Product | null> {
   const query = `*[_type == "product" && _id == $productId][0]`;
   const product = await client.fetch(query, { productId });
@@ -49,7 +49,7 @@ function ProductPage() {
   const routeParams = useParams();
   const productId = routeParams.productId as string;
 
-  // Fetch product data
+// Fetch data of product..........
   useEffect(() => {
     async function fetchData() {
       if (productId) {
@@ -69,7 +69,7 @@ function ProductPage() {
   }, []);
 
   {
-    /* Cart save in local storage */
+    // Cart save in local storage.........
   }
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -104,17 +104,17 @@ function ProductPage() {
         },
       ]);
     }
-    setCartOpen(true); // Open cart on adding
+    setCartOpen(true);
   };
 
   {
-    /* remove item to cart */
+    // remove item to cart...........
   }
   const removeFromCart = (id: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // Calculate total price
+  //total price calculating................
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -289,7 +289,8 @@ function ProductPage() {
                 <p className="text-lg font-bold">Total: $ {getTotalPrice()}</p>
                 <button
                   onClick={() => alert("Proceeding to Checkout")}
-                  className="mt-4 w-full bg-black text-white py-2 rounded">
+                  className="mt-4 w-full bg-black text-white py-2 rounded"
+                >
                   Checkout
                 </button>
               </div>

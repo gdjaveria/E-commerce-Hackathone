@@ -6,10 +6,12 @@ import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { FaTrashArrowUp } from "react-icons/fa6";
-import { IoMdCheckmark } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
+import Link from "next/link";
 
 import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
+
 
 //  the Product type...............
 interface Product {
@@ -75,7 +77,7 @@ function ProductPage() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Add to Cart
+  // Add to Cart...........
   const addToCart = () => {
     if (!product) return;
 
@@ -238,9 +240,9 @@ function ProductPage() {
               {/* Add to Cart */}
               <button
                 onClick={addToCart}
-                className="mt-6 bg-black text-white px-6 py-3 rounded-lg"
+                className="mt-6 bg-black text-white px-6 py-3 font-semibold rounded-full"
               >
-                Add to Cart
+                Add To Cart
               </button>
             </div>
           </div>
@@ -252,9 +254,10 @@ function ProductPage() {
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
             <div className="fixed right-0 top-0 w-96 bg-white h-full shadow-lg flex flex-col">
               <div className="flex justify-between p-4 border-b">
-                <h2 className="text-xl font-bold">Your Cart</h2>
+                <h2 className="text-xl font-bold"> Cart</h2>
                 <button onClick={() => setCartOpen(false)}>
-                  <IoMdCheckmark className="w-6 h-6" />
+                  <RxCross1
+                  size={28} />
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
@@ -268,31 +271,33 @@ function ProductPage() {
                       alt={item.name}
                       width={50}
                       height={50}
-                      className="rounded mr-4"
+                      className="rounded mr-6"
                     />
                     <div className="flex-1">
                       <p className="font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800">
                         $ {item.price} x {item.quantity}
                       </p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-red-500"
+                      className="text-red-700"
                     >
-                      <FaTrashArrowUp className="w-5 h-5" />
+                      <FaTrashArrowUp size={26}/>
                     </button>
                   </div>
                 ))}
               </div>
               <div className="p-4 border-t">
                 <p className="text-lg font-bold">Total: $ {getTotalPrice()}</p>
+                <Link href="/checkout">
                 <button
                   onClick={() => alert("Proceeding to Checkout")}
-                  className="mt-4 w-full bg-black text-white py-2 rounded"
+                  className="mt-8 w-full bg-black text-white py-2 rounded font-bold"
                 >
                   Checkout
                 </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import Footer from "../components/Footer";
 import ShopLine from "../components/Shop";
 import SearchDown from "../components/Categories";
 import Navbar from "../components/Navbar";
+import Pagination from "../components/pagination";
 
 // Define the ImageAsset interface for the image
 interface ImageAsset {
@@ -44,6 +46,12 @@ const Shop = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1); // State for pagination
+  const itemsPerPage = 12; // Number of products per page
+
+
+  
+
 
   // products fetching on component............
   useEffect(() => {
@@ -61,7 +69,17 @@ const Shop = () => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (!selectedCategory || product.category === selectedCategory)
   );
+// Pagination calculations
+const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+const paginatedProducts = filteredProducts.slice(
+  (currentPage - 1) * itemsPerPage,
+  currentPage * itemsPerPage
+);
 
+// Handle page change
+const handlePageChange = (page: number) => {
+  setCurrentPage(page);
+};
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
@@ -108,7 +126,7 @@ const Shop = () => {
           )}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {filteredProducts.map((product) => (
+          {paginatedProducts.map((product) => (
             <div
               key={product._id}
               className="relative group text-center p-6 product-card bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300"
@@ -131,16 +149,24 @@ const Shop = () => {
                   ${product.price}
                 </p>
               </Link>
-              <div className="mt-4 flex justify-around"></div>
             </div>
           ))}
         </div>
+
+        {/* Pagination Component */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
+
       {/* Footer */}
       <Center />
       <Footer />
     </div>
   );
 };
+
 
 export default Shop;

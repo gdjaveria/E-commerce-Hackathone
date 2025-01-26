@@ -74,7 +74,7 @@ const TopChair = () => {
       {/* Products Section */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
         {chair.length === 0 ? (
-          <p>No beds available right now.</p>
+          <p>No chairs available right now........</p>
         ) : (
           chair.map((chair) => (
             <div key={chair._id} className="bg-[#FAF4F4] rounded-md p-6">

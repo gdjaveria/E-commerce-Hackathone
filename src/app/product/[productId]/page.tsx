@@ -33,7 +33,7 @@ interface CartItem {
   color?: string;
 }
 
-      // Fetch product data  from Sanity to dynamic pages.........
+// Fetch product data  from Sanity to dynamic pages.........
 async function getProductData(productId: string): Promise<Product | null> {
   const query = `*[_type == "product" && _id == $productId][0]`;
   const product = await client.fetch(query, { productId });
@@ -49,7 +49,7 @@ function ProductPage() {
   const routeParams = useParams();
   const productId = routeParams.productId as string;
 
-// Fetch data of product..........
+  // Fetch data of product..........
   useEffect(() => {
     async function fetchData() {
       if (productId) {

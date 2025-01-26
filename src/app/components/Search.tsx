@@ -32,7 +32,7 @@ interface Product {
   image: SanityImage;
 }
 
- function Search() {
+function Search() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -119,4 +119,4 @@ interface Product {
     </div>
   );
 }
- export default Search;
+export default Search;

@@ -10,7 +10,6 @@ import ShopLine from "../components/Shop";
 import SearchDown from "../components/Categories";
 import Navbar from "../components/Navbar";
 
-
 // Define the ImageAsset interface for the image
 interface ImageAsset {
   _ref: string;
@@ -46,7 +45,7 @@ const Shop = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  // products fetching on component............ 
+  // products fetching on component............
   useEffect(() => {
     async function getProducts() {
       const products = await fetchProducts();
@@ -66,7 +65,7 @@ const Shop = () => {
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
-        <Navbar/>
+        <Navbar />
       </div>
 
       <div className="relative text-black">

@@ -49,10 +49,6 @@ const Shop = () => {
   const [currentPage, setCurrentPage] = useState<number>(1); // State for pagination
   const itemsPerPage = 12; // Number of products per page
 
-
-  
-
-
   // products fetching on component............
   useEffect(() => {
     async function getProducts() {
@@ -69,17 +65,17 @@ const Shop = () => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (!selectedCategory || product.category === selectedCategory)
   );
-// Pagination calculations
-const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-const paginatedProducts = filteredProducts.slice(
-  (currentPage - 1) * itemsPerPage,
-  currentPage * itemsPerPage
-);
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
-// Handle page change
-const handlePageChange = (page: number) => {
-  setCurrentPage(page);
-};
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
@@ -167,6 +163,5 @@ const handlePageChange = (page: number) => {
     </div>
   );
 };
-
 
 export default Shop;

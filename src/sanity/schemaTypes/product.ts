@@ -11,10 +11,7 @@ const productSchema = {
     {
       name: 'image',
       title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'url', // Changed to url for storing image URLs
     },
     {
       name: 'price',
@@ -46,7 +43,6 @@ const productSchema = {
       title: 'Category',
       type: 'string',
     },
-    // New fields
     {
       name: 'brand',
       title: 'Brand',

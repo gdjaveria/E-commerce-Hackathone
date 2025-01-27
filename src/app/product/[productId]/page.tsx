@@ -5,26 +5,28 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { FaTrashArrowUp } from "react-icons/fa6";
-import { RxCross1 } from "react-icons/rx";
-import Link from "next/link";
-
-import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import  { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
 
+import Link from "next/link";
+import { FaTrashAlt } from "react-icons/fa";
 
-//  the Product type...............
+// Define Product type
 interface Product {
   _id: string;
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: string | object; // Adjusted for Sanity image type compatibility
   sizes?: string[];
   colors?: string[];
+  tags?: string[];
+  ratings?: number;
+  reviews?: string[];
 }
 
-//  CartItem type.............
+// Define CartItem type
 interface CartItem {
   id: string;
   name: string;
@@ -35,7 +37,7 @@ interface CartItem {
   color?: string;
 }
 
-// Fetch product data  from Sanity to dynamic pages.........
+// Fetch product data from Sanity
 async function getProductData(productId: string): Promise<Product | null> {
   const query = `*[_type == "product" && _id == $productId][0]`;
   const product = await client.fetch(query, { productId });
@@ -45,13 +47,13 @@ async function getProductData(productId: string): Promise<Product | null> {
 function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedSize] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
 
   const routeParams = useParams();
   const productId = routeParams.productId as string;
 
-  // Fetch data of product..........
+  // Fetch product data
   useEffect(() => {
     async function fetchData() {
       if (productId) {
@@ -62,7 +64,7 @@ function ProductPage() {
     fetchData();
   }, [productId]);
 
-  // cart loading from local storage.........
+  // Load cart from local storage
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
@@ -70,14 +72,12 @@ function ProductPage() {
     }
   }, []);
 
-  {
-    // Cart save in local storage.........
-  }
+  // Save cart to local storage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Add to Cart...........
+  // Add to cart
   const addToCart = () => {
     if (!product) return;
 
@@ -100,7 +100,7 @@ function ProductPage() {
           id: product._id,
           name: product.name,
           price: product.price,
-          image: product.image,
+          image: typeof product.image === "string" ? product.image : urlFor(product.image).url(),
           quantity: 1,
           size: selectedSize || undefined,
         },
@@ -109,14 +109,12 @@ function ProductPage() {
     setCartOpen(true);
   };
 
-  {
-    // remove item to cart...........
-  }
+  // Remove from cart
   const removeFromCart = (id: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  //total price calculating................
+  // Calculate total price
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -136,7 +134,7 @@ function ProductPage() {
           {/* Product Image */}
           <div>
             <Image
-              src={urlFor(product.image).url()}
+              src={typeof product.image === "string" ? product.image : urlFor(product.image).url()}
               alt={product.name}
               width={500}
               height={500}
@@ -145,13 +143,12 @@ function ProductPage() {
           </div>
 
           {/* Product Details */}
-
           <div className="flex-1 space-y-5">
             <h3 className="text-5xl font-bold text-black sm:text-2xl md:text-4xl">
               {product.name}
             </h3>
             <p className="text-gray-800 text-3xl font-extrabold sm:text-2xl">
-              {product.price}
+              ${product.price}
             </p>
             <div className="flex items-center space-x-2 mt-4">
               <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
@@ -164,6 +161,7 @@ function ProductPage() {
               {product.description}
             </p>
 
+            {/* Sizes */}
             <div className="mb-4 my-10">
               <h3 className="text-gray-400 font-semibold mb-2">
                 {product.sizes}
@@ -180,6 +178,7 @@ function ProductPage() {
                 </button>
               </div>
             </div>
+           
 
             <div className="mb-6">
               <h3 className="text-gray-400 font-semibold mb-2">
@@ -232,32 +231,28 @@ function ProductPage() {
                   />
                   <IoIosHeartEmpty
                     size={32}
-                    className="cursor:pointer text-red-700"
-                  />
+                      className="cursor:pointer text-red-700"
+                   />
                 </div>
               </div>
-
-              {/* Add to Cart */}
-              <button
-                onClick={addToCart}
-                className="mt-6 bg-black text-white px-6 py-3 font-semibold rounded-full"
-              >
-                Add To Cart
-              </button>
-            </div>
+</div>
+            <button
+              onClick={addToCart}
+              className="mt-6 bg-black text-white px-6 py-3 font-semibold rounded-full"
+            >
+              Add To Cart
+            </button>
           </div>
         </div>
 
         {/* Cart Sidebar */}
-
         {cartOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
             <div className="fixed right-0 top-0 w-96 bg-white h-full shadow-lg flex flex-col">
               <div className="flex justify-between p-4 border-b">
-                <h2 className="text-xl font-bold"> Cart</h2>
+                <h2 className="text-xl font-bold">Cart</h2>
                 <button onClick={() => setCartOpen(false)}>
-                  <RxCross1
-                  size={28} />
+                  <RxCross1 size={28} />
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
@@ -267,7 +262,7 @@ function ProductPage() {
                     className="flex items-center mb-4"
                   >
                     <Image
-                      src={urlFor(item.image).url()}
+                      src={item.image}
                       alt={item.name}
                       width={50}
                       height={50}
@@ -276,20 +271,20 @@ function ProductPage() {
                     <div className="flex-1">
                       <p className="font-medium">{item.name}</p>
                       <p className="text-sm text-gray-800">
-                        $ {item.price} x {item.quantity}
+                        ${item.price} x {item.quantity}
                       </p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="text-red-700"
                     >
-                      <FaTrashArrowUp size={26}/>
+                      <FaTrashAlt size={26} />
                     </button>
                   </div>
                 ))}
               </div>
               <div className="p-4 border-t">
-                <p className="text-lg font-bold">Total: $ {getTotalPrice()}</p>
+                <p className="text-lg font-bold">Total: ${getTotalPrice()}</p>
                 <Link href="/checkout">
                 <button
                   onClick={() => alert("Proceeding to Checkout")}
@@ -299,6 +294,7 @@ function ProductPage() {
                 </button>
                 </Link>
               </div>
+                  
             </div>
           </div>
         )}

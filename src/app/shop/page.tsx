@@ -34,10 +34,12 @@ async function fetchProducts(): Promise<Product[]> {
     _id,
     name,
     price,
-    "shortDescription": description[0..100],
+    "shortDescription": description[0..100]",
     category,
     "image":image.asset._ref
   }`;
+
+  
   const products = await client.fetch(query);
   return products;
 }

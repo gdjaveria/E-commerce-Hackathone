@@ -14,7 +14,7 @@ const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
+  token: "skfv1EDR5wtRyJOFy832W3JzEjQVY85mI3cidprxP7J3dU5bY3dl6Ta1EI1EfAZyhbR59A7BRGqg7VUclD91eAXsyqzKOXanmkFgnnWnBISGpwp7ekAsEuGcjZn9nO0Jj4PbYCwtpIVt8SEsdxiCM9GL2OBLtOGI6OFwmvaCnhtwEdCCkFoU",
   apiVersion: '2021-08-31',
 });
 

@@ -1,4 +1,4 @@
-"use client";                 
+"use client"               
 
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
@@ -45,8 +45,9 @@ async function getProductData(productId: string): Promise<Product | null> {
 function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedSize] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const routeParams = useParams();
   const productId = routeParams.productId as string;
@@ -89,7 +90,7 @@ function ProductPage() {
       setCart((prevCart) =>
         prevCart.map((item) =>
           item.id === product._id && item.size === selectedSize
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       );
@@ -101,7 +102,7 @@ function ProductPage() {
           name: product.name,
           price: product.price,
           image: product.image,
-          quantity: 1,
+          quantity: quantity,
           size: selectedSize || undefined,
         },
       ]);
@@ -112,13 +113,24 @@ function ProductPage() {
   {
     // remove item to cart...........
   }
-  const removeFromCart = (id: string) => {
+   const removeFromCart = (id: string) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
   //total price calculating................
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+  // Increment quantity
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+   // Decrement quantity
+   const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
   };
 
   if (!product) {
@@ -153,48 +165,63 @@ function ProductPage() {
             <p className="text-gray-800 text-3xl font-extrabold sm:text-2xl">
               {product.price}
             </p>
-            <div className="flex items-center space-x-2 mt-4">
+
+        {/* Size Options */}
+        <div className="mt-6">
+              <span className="font-semibold">Size:</span>
+              <div className="flex space-x-4 mt-2">
+                {["M", "L", "XL", "XXL"].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-4 py-2 border rounded ${
+                      selectedSize === size
+                        ? "bg-black text-white"
+                        : "hover:bg-gray-100"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+
+
+               {/* Rating */}  
+               <div className="flex items-center space-x-2 mt-4">
               <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
               <span className="text-gray-700 text-sm sm:text-base ">
                 (5 Customer Reviews)
               </span>
             </div>
 
-            <p className="text-gray-600 mb-6 mt-6 sm:text-base">
-              {product.description}
-            </p>
-
-            <div className="mb-4 my-10">
-              <h3 className="text-gray-400 font-semibold mb-2">
-                {product.sizes}
-              </h3>
-              <div className="flex space-x-2">
-                <button className="px-4 py-2 border rounded-lg bg-yellow-200">
-                  L
-                </button>
-                <button className="px-4 py-2 border rounded-lg bg-gray-100">
-                  XL
-                </button>
-                <button className="px-4 py-2 border rounded-lg bg-gray-100">
-                  XS
-                </button>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <h3 className="text-gray-400 font-semibold mb-2">
-                {product.colors}
-              </h3>
-              <div className="flex space-x-4">
+            {/* Color Options */}
+               <div className="flex space-x-4">
                 <button className="w-8 h-8 rounded-full bg-purple-500 border"></button>
                 <button className="w-8 h-8 rounded-full bg-black border"></button>
                 <button className="w-8 h-8 rounded-full bg-yellow-600 border"></button>
               </div>
             </div>
-            <div className="flex items-center space-x-4 mb-5">
-              <button className="px-4 py-2 border rounded-lg">-</button>
-              <span className="text-lg font-semibold">1</span>
-              <button className="px-4 py-2 border rounded-lg">+</button>
+
+             {/* Quantity Selector */}
+             <div className="flex items-center mt-6 space-x-4">
+              <span className="font-semibold">Quantity:</span>
+              <div className="flex items-center border rounded-lg">
+                <button
+                  onClick={decrementQuantity}
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  -
+                </button>
+                <span className="px-4 py-2">{quantity}</span>
+                <button
+                  onClick={incrementQuantity}
+                  className="px-4 py-2 hover:bg-gray-100"
+                >
+                  +
+                </button>
+              </div>
             </div>
 
             <hr className="scroll-my-6" />
@@ -237,7 +264,7 @@ function ProductPage() {
                 </div>
               </div>
 
-              {/* Add to Cart */}
+              {/* button of Add to Cart */}
               <button
                 onClick={addToCart}
                 className="mt-6 bg-black text-white px-6 py-3 font-semibold rounded-full"
@@ -256,8 +283,7 @@ function ProductPage() {
               <div className="flex justify-between p-4 border-b">
                 <h2 className="text-xl font-bold"> Cart</h2>
                 <button onClick={() => setCartOpen(false)}>
-                  <RxCross1
-                  size={28} />
+                  <RxCross1 className="w-5 h-5" />
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
@@ -276,14 +302,14 @@ function ProductPage() {
                     <div className="flex-1">
                       <p className="font-medium">{item.name}</p>
                       <p className="text-sm text-gray-800">
-                        $ {item.price} x {item.quantity}
+                        $ {item.price} x {item.quantity} (Size: {item.size || "N/A"})
                       </p>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-red-700"
+                      className="text-red-600"
                     >
-                      <FaTrashArrowUp size={26}/>
+                      <FaTrashArrowUp className="w-5 h-5"/>
                     </button>
                   </div>
                 ))}
@@ -293,7 +319,7 @@ function ProductPage() {
                 <Link href="/checkout">
                 <button
                   onClick={() => alert("Proceeding to Checkout")}
-                  className="mt-8 w-full bg-black text-white py-2 rounded font-bold"
+                  className="mt-6 w-full bg-black text-white py-2 rounded font-bold"
                 >
                   Checkout
                 </button>
@@ -303,7 +329,7 @@ function ProductPage() {
           </div>
         )}
       </div>
-    </div>
+    
   );
 }
 

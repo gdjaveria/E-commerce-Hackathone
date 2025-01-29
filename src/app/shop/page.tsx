@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/lib/image";
+import SearchDown from "../components/SearchDown";
+import ShopLine from "../components/Shop";
+import Navbar from "../components/Navbar";
 import Center from "../components/Center";
 import Footer from "../components/Footer";
-import ShopLine from "../components/Shop";
-import SearchDown from "../components/Categories";
-import Navbar from "../components/Navbar";
-import Pagination from "../components/pagination";
 
 // Define the ImageAsset interface for the image
 interface ImageAsset {
@@ -34,24 +33,20 @@ async function fetchProducts(): Promise<Product[]> {
     _id,
     name,
     price,
-    "shortDescription": description[0..100]",
+    "shortDescription": description[0..100],
     category,
     "image":image.asset._ref
   }`;
-
-  
   const products = await client.fetch(query);
   return products;
 }
 
-const Shop = () => {
+const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1); // State for pagination
-  const itemsPerPage = 12; // Number of products per page
 
-  // products fetching on component............
+  // Fetch products on component mount
   useEffect(() => {
     async function getProducts() {
       const products = await fetchProducts();
@@ -60,24 +55,13 @@ const Shop = () => {
     getProducts();
   }, []);
 
-  // Filter products and based on............
-  // search term and selected category...........
+  // Filter products based on search term and selected category
   const filteredProducts = products.filter(
     (product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (!selectedCategory || product.category === selectedCategory)
   );
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const paginatedProducts = filteredProducts.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
 
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
       <div className="bg-[#faf4f4]">
@@ -113,7 +97,7 @@ const Shop = () => {
         <ShopLine />
       </div>
 
-      <div className="max-w-8xl mx-auto py-10 px-8 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <SearchDown
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -123,8 +107,8 @@ const Shop = () => {
             new Set(products.map((product) => product.category))
           )}
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {paginatedProducts.map((product) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {filteredProducts.map((product) => (
             <div
               key={product._id}
               className="relative group text-center p-6 product-card bg-white shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300"
@@ -135,28 +119,22 @@ const Shop = () => {
                   alt={product.name}
                   width={300}
                   height={300}
-                  className="mx-auto h-56 object-cover rounded-sm"
+                  className="mx-auto h-64 object-cover rounded-md"
                 />
-                <h3 className="text-lg font-bold text-gray-800 mt-7">
+                <h3 className="mt-4 text-xl font-semibold text-gray-800">
                   {product.name}
                 </h3>
-                <p className="mt-6 text-gray-600 text-sm">
+                <p className="mt-2 text-gray-600 text-sm">
                   {product.shortDescription}
                 </p>
-                <p className="text-xl font-bold text-gray-800">
+                <p className="mt-2 text-lg font-bold text-gray-800">
                   ${product.price}
                 </p>
               </Link>
+              <div className="mt-4 flex justify-around"></div>
             </div>
           ))}
         </div>
-
-        {/* Pagination Component */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
       </div>
 
       {/* Footer */}
@@ -166,4 +144,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;

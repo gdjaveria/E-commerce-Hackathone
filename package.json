@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "Data": "node scripts/data-migration.mjs"
-  },
+     "import:sanity": "node scripts/importSanityData.mjs"
+    },
+  
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",

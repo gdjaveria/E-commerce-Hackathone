@@ -83,8 +83,8 @@ const Asgaardsofa = () => {
             </p>
 
             <div className="mb-4">
-              <h3 className="text-gray-400 font-semibold mb-2">Size</h3>
-              <div className="flex space-x-2">
+              <h3 className="text-gray-600 font-semibold mb-2">Size</h3>
+              <div className="flex space-x-2 mt-5">
                 <button className="px-4 py-2 border rounded-lg bg-yellow-200">
                   L
                 </button>

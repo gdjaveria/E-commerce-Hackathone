@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar";
 import Center from "../components/Center";
 import Footer from "../components/Footer";
 
+
 // Define the ImageAsset interface for the image
 interface ImageAsset {
   _ref: string;
@@ -96,7 +97,7 @@ const ShopPage = () => {
       <div className="my-6">
         <ShopLine />
       </div>
-
+      
       <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <SearchDown
           searchTerm={searchTerm}

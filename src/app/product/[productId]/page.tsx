@@ -9,6 +9,7 @@ import Link from "next/link";
 import { FaTrashArrowUp } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosHeartEmpty } from "react-icons/io";
+import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
 // Product type
 interface Product {
@@ -149,11 +150,21 @@ function ProductPage() {
         {/* Product Details */}
         <div className="flex-1 space-y-5">
           <h3 className="text-5xl font-semibold text-black">{product.name}</h3>
-          <p className="text-gray-500 text-2xl">${product.price}</p>
+          <p className="text-gray-700 text-2xl font-semibold">${product.price}</p>
           <p className="text-gray-600 mt-6">{product.description}</p>
 
+             {/* Rating */}
+             <div className="flex items-center mt-8 space-x-4">
+            <span className="font-semibold">Rating:</span>
+            <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+            <span className="text-gray-700 text-sm sm:text-base">
+              ( Customer Reviews )
+            </span>
+          </div>
+
+
           {/* Size Options */}
-          <div className="flex space-x-2 mt-5">
+          <div className="flex space-x-2 mt-8">
             {["M", "L", "XL", "XXL"].map((size) => (
               <button
                 key={size}
@@ -169,17 +180,8 @@ function ProductPage() {
             ))}
           </div>
 
-          {/* Rating */}
-          <div className="flex items-center mt-6 space-x-4">
-            <span className="font-semibold">Rating:</span>
-            <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
-            <span className="text-gray-700 text-sm sm:text-base">
-              (5 Customer Reviews)
-            </span>
-          </div>
-
-          {/* Color Options */}
-          <div className="flex space-x-4 mt-4">
+             {/* Color Options */}
+          <div className="flex space-x-4 mt-8">
             <button className="w-8 h-8 rounded-full bg-purple-500 border"></button>
             <button className="w-8 h-8 rounded-full bg-black border"></button>
             <button className="w-8 h-8 rounded-full bg-yellow-600 border"></button>
@@ -206,21 +208,46 @@ function ProductPage() {
           {/* Add to Cart Button */}
           <button
             onClick={addToCart}
-            className="mt-6 bg-black text-white px-6 py-3 font-semibold rounded-full"
+            className="mt-8 bg-black text-white px-6 py-3 font-semibold rounded-full"
           >
             Add To Cart
           </button>
         </div>
-      </div>
-
-      {/* Cart Sidebar open */}
+        </div>
+        <hr className="scroll-my-6 mt-7"/>
+          <div className="space-y-4 mt-7">
+            <div className="flex justify-end">
+              <h3 className="text-gray-700">SKU</h3>
+              <span className="pl-4 text-gray-700">: SS001</span>
+            </div>
+            <div className="flex justify-end">
+              <h3 className="text-gray-700">Category</h3>
+              <span className="pl-4 text-gray-700">: Sofas</span>
+            </div>
+            <div className="flex justify-end">
+              <h3 className="text-gray-700 ">Tags</h3>
+              <span className="pl-4 text-gray-700">: Sofa, Chair, Home, Shop</span>
+            </div>
+            <div className="flex justify-end items-center mt-5">
+              <h3 className="text-gray-700">Share</h3>
+              <span className="pl-8 text-gray-700">:</span>
+              <div className="flex space-x-4">
+                <FaFacebook size={28} className="cursor-pointer hover:text-gray-500"/>
+                <FaLinkedin size={28} className="cursor-pointer hover:text-gray-500"/>
+                <FaTwitterSquare size={28} className="cursor-pointer hover:text-gray-500"/>
+                <IoIosHeartEmpty size={32} className="cursor-pointer text-red-500"/>
+              </div>
+            </div>
+          </div>
+        
+        {/* Cart Sidebar open */}
       {cartOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
           <div className="fixed right-0 top-0 w-96 bg-white h-full shadow-lg flex flex-col">
             <div className="flex justify-between p-4 border-b">
               <h2 className="text-xl font-bold">Cart</h2>
               <button onClick={() => setCartOpen(false)}>
-                <RxCross1 className="w-5 h-5" />
+                <RxCross1 className="w-5 h-5"/>
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-4">
@@ -232,8 +259,8 @@ function ProductPage() {
                   <Image
                     src={urlFor(item.image).url()}
                     alt={item.name}
-                    width={50}
-                    height={50}
+                    width={70}
+                    height={70}
                     className="rounded mr-4"
                   />
                   <div className="flex-1">
@@ -254,12 +281,15 @@ function ProductPage() {
             </div>
             <div className="p-4 border-t">
               <p className="text-lg font-bold">Total: $ {getTotalPrice()}</p>
+              
+              <Link href="/checkout">
               <button
                 onClick={() => alert("Proceeding to Checkout")}
                 className="mt-4 w-full bg-black text-white py-2 rounded"
               >
                 Checkout
               </button>
+              </Link>
             </div>
           </div>
         </div>

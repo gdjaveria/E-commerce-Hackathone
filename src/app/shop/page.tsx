@@ -10,9 +10,6 @@ import ShopLine from "../components/Shop";
 import Navbar from "../components/Navbar";
 import Center from "../components/Center";
 import Footer from "../components/Footer";
-import Pagination from "../components/Pagination";
-
-           
 
 
 // Define the ImageAsset interface for the image
@@ -49,9 +46,6 @@ const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const productsPerPage = 8;
-
 
   // Fetch products on component mount
   useEffect(() => {
@@ -68,16 +62,6 @@ const ShopPage = () => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (!selectedCategory || product.category === selectedCategory)
   );
-
-  
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  
-
-   
 
   return (
     <div className="max-w-screen-2xl container mx-auto pb-8 px-4">
@@ -111,7 +95,7 @@ const ShopPage = () => {
       </div>
 
       <div className="my-6">
-        <ShopLine/>
+        <ShopLine />
       </div>
       
       <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
@@ -154,77 +138,12 @@ const ShopPage = () => {
         </div>
       </div>
 
-{/* Pagination Component */}
-<Pagination currentPage={currentPage} 
-totalPages={totalPages} 
-onPageChange={setCurrentPage} />
-
-
-        
-
-
-
-        {/* Footer */}
-       <Center />
-       <Footer />
-
-      </div>
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-            
-
-          
-         
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-    
+      {/* Footer */}
+      <Center />
+      <Footer />
+    </div>
   );
 };
 
 export default ShopPage;
+

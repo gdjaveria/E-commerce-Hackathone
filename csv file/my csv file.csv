@@ -1,0 +1,17 @@
+Test Case ID, Description, Test steps,Expected Result,Actual Result,Status,Severity ,Remarks
+TC000,test navigation links,click on all navigate links,links navigate correctly,links function as intended,pass,medium,no break links
+TC001,product listing verified,open product page>verify a product details,product display perfect,accurately product display ,pass,medium,no issue find
+TC002,check blog post accessibility,blog page work correctly,post are accessible,perfectly via screen readers,pass,medium,none
+TC003,test api error handling,disconnect api so refresh the page,api reached sucessfully,error message display correctly,pass,medium,test successful
+TC004,responsive on mobile,resize broweser window >check layout,"mobile ,dekstop display perfect",responsive layout work is correctly,pass,medium,mobile layout optimize
+TC005,check cart functionality,"add product ,delete product >verfiy cart updates",cart is updated with added product,cart update and work as expected,pass,high,work as expected
+TC006,analyaze perfomance metrics,run lighthouse test,perfomance score >=78,perfomance score >=62,pass,medium,optimized sucessfully
+TC007,check accessibility features,inspect accessbility,accessibility score >=80,accessibility score >=89,fail,medium,nedds more improvement
+TC008,evalute seo optimization,run SEO audit,SEO score >=90,SEO score >=83,pass,medium,needs full optimized
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

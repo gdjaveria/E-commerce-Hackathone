@@ -4,8 +4,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { FiSearch } from 'react-icons/fi';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { TfiMenuAlt } from "react-icons/tfi";
-import ShoppingCart from './Card';
-
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import {
   Sheet,
@@ -42,7 +41,7 @@ const Navbar = () => {
               <IoMdHeartEmpty aria-label="Favorites"
                 size={25}/>
               <div className="flex items-center z-10">
-                <ShoppingCart />
+                 <AiOutlineShoppingCart aria-label="Shopping Cart" size={25} />
               </div>
             </div>
 
